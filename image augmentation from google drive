@@ -1,0 +1,45 @@
+from google.colab import drive
+drive.mount('/content/drive')
+  
+!pip install albumentations
+
+import albumentations as A
+from PIL import Image
+import numpy as np
+import os
+
+# Define the augmentation pipeline
+transform = A.Compose([
+    A.Rotate(limit=40, p=0.5),
+    A.RandomResizedCrop(height=224, width=224, p=0.5),
+    A.HorizontalFlip(p=0.5),
+    A.VerticalFlip(p=0.5),
+    A.RandomBrightnessContrast(p=0.2),
+])
+
+# Set up paths to your Google Drive folders
+input_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed/test'  # Replace with your path
+output_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed/output'  # Replace with your path
+
+# Create the output folder if it doesn't exist
+os.makedirs(output_folder, exist_ok=True)
+
+# Loop through each image in the input folder
+for img_name in os.listdir(input_folder):
+    # Load the image
+    img_path = os.path.join(input_folder, img_name)
+    image = np.array(Image.open(img_path))
+
+    # Create 5 augmented images for each original image
+    for i in range(5):
+        # Apply transformations
+        augmented_image = transform(image=image)['image']
+
+        # Save the augmented image with a unique name
+        aug_img_name = f'aug_{img_name[:-4]}_{i}.jpg'  # Example: aug_image1_0.jpg, aug_image1_1.jpg, etc.
+        aug_img_path = os.path.join(output_folder, aug_img_name)
+        Image.fromarray(augmented_image.astype(np.uint8)).convert('RGB').save(aug_img_path)
+
+        print(f'Augmented and saved: {aug_img_name}')
+
+print("Augmentation complete!")
