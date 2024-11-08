@@ -1,0 +1,12 @@
+from google.colab import drive
+import os
+
+# Step 1: Mount Google Drive
+drive.mount('/content/drive')
+
+# Step 2: Specify the path of the Google Drive folder (root by default)
+drive_path = '/content/drive/MyDrive/Data for Leaf Disease/Raw Images'
+
+# Step 3: Count files in Google Drive
+file_count = sum([len(files) for r, d, files in os.walk(drive_path)])
+print(f"Total number of files in Google Drive: {file_count}")
