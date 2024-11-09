@@ -24,7 +24,6 @@ output_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed
 # Create the output folder if it doesn't exist
 os.makedirs(output_folder, exist_ok=True)
 
-
 # Loop through each image in the input folder
 for img_name in os.listdir(input_folder):
     # Load the image
