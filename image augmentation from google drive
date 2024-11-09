@@ -3,10 +3,12 @@ drive.mount('/content/drive')
   
 !pip install albumentations
 
+
 import albumentations as A
 from PIL import Image
 import numpy as np
 import os
+
 
 # Define the augmentation pipeline
 transform = A.Compose([
