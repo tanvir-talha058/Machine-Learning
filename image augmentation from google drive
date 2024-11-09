@@ -27,16 +27,19 @@ output_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed
 # Create the output folder if it doesn't exist
 os.makedirs(output_folder, exist_ok=True)
 
+
 # Loop through each image in the input folder
 for img_name in os.listdir(input_folder):
     # Load the image
     img_path = os.path.join(input_folder, img_name)
     image = np.array(Image.open(img_path))
 
+
     # Create 5 augmented images for each original image
     for i in range(5):
         # Apply transformations
         augmented_image = transform(image=image)['image']
+
 
         # Save the augmented image with a unique name
         aug_img_name = f'aug_{img_name[:-4]}_{i}.jpg'  # Example: aug_image1_0.jpg, aug_image1_1.jpg, etc.
