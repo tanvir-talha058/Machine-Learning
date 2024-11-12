@@ -1,1 +1,7 @@
 !pip install rembg opencv-python-headless pillow
+
+from google.colab import drive
+from rembg import remove
+from PIL import Image
+import os
+import io
