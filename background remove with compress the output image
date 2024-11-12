@@ -13,7 +13,6 @@ drive.mount('/content/drive')
 input_folder = '/content/drive/MyDrive/Data for Leaf Disease/new' # Updated path to include /content/drive
 output_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed/new'  # Updated path to include /content/drive
 
-
 # Create output folder if it doesn't exist
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
