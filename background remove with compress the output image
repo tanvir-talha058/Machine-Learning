@@ -5,3 +5,61 @@ from rembg import remove
 from PIL import Image
 import os
 import io
+
+
+# Mount Google Drive
+drive.mount('/content/drive')
+
+# Define paths
+input_folder = '/content/drive/MyDrive/Data for Leaf Disease/new' # Updated path to include /content/drive
+output_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed/new'  # Updated path to include /content/drive
+
+
+# Create output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+# Function to compress image to under 500 KB
+def compress_image(image_path, max_size_kb=500):
+    with Image.open(image_path) as img:
+        # Use an in-memory byte stream
+        img_bytes = io.BytesIO()
+        quality = 85  # Starting quality
+        while True:
+            img_bytes.seek(0)
+            img.save(img_bytes, format="PNG", quality=quality)
+            size_kb = len(img_bytes.getvalue()) / 1024
+            if size_kb <= max_size_kb or quality <= 5:
+                break
+            quality -= 5  # Decrease quality to reduce size
+        return Image.open(img_bytes)
+
+# Initialize a counter
+processed_count = 0
+
+# Process each image
+for filename in os.listdir(input_folder):
+    if filename.endswith(('.png', '.jpg', '.jpeg')):  # Adjust extensions if needed
+        input_path = os.path.join(input_folder, filename)
+        output_path = os.path.join(output_folder, filename)
+
+        # Load and remove background
+        with open(input_path, 'rb') as file:
+            input_data = file.read()
+            output_data = remove(input_data)
+
+        # Save result to a temporary path
+        temp_path = '/content/temp_image.png'
+        with open(temp_path, 'wb') as file:
+            file.write(output_data)
+
+        # Compress if necessary
+        compressed_img = compress_image(temp_path, max_size_kb=500)
+        compressed_img.save(output_path, format='PNG')
+
+        # Increment counter and print progress
+        processed_count += 1
+        print(f"Processed and saved: {filename} (Total processed: {processed_count})")
+
+# Print the final count
+print(f"Total images processed successfully: {processed_count}")
