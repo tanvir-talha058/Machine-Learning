@@ -6,7 +6,6 @@ from PIL import Image
 import os
 import io
 
-
 # Mount Google Drive
 drive.mount('/content/drive')
 
