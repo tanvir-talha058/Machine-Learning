@@ -40,6 +40,7 @@ for img_name in os.listdir(input_folder):
         augmented_image = transform(image=image)['image']
 
         # Save the augmented image with a unique name
+
         aug_img_name = f'aug_{img_name[:-4]}_{i}.jpg'  # Example: aug_image1_0.jpg, aug_image1_1.jpg, etc.
         aug_img_path = os.path.join(output_folder, aug_img_name)
         Image.fromarray(augmented_image.astype(np.uint8)).convert('RGB').save(aug_img_path)
