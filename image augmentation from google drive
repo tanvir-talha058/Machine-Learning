@@ -8,6 +8,7 @@ from PIL import Image
 import numpy as np
 import os
 
+
 # Define the augmentation pipeline
 transform = A.Compose([
     A.Rotate(limit=40, p=0.5),
