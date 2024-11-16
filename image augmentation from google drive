@@ -27,6 +27,7 @@ os.makedirs(output_folder, exist_ok=True)
 
 
 # Loop through each image in the input folder
+
 for img_name in os.listdir(input_folder):
     # Load the image
     img_path = os.path.join(input_folder, img_name)
