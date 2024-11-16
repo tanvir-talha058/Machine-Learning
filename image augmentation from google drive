@@ -34,6 +34,7 @@ for img_name in os.listdir(input_folder):
     image = np.array(Image.open(img_path))
 
     # Create 5 augmented images for each original image
+
     for i in range(5):
         # Apply transformations
         augmented_image = transform(image=image)['image']
