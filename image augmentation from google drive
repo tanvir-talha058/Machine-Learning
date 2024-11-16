@@ -18,6 +18,7 @@ transform = A.Compose([
 ])
 
 # Set up paths to your Google Drive folders
+
 input_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed/test'  # Replace with your path
 output_folder = '/content/drive/MyDrive/Data for Leaf Disease/Background Removed/output'  # Replace with your path
 
