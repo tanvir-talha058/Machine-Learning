@@ -3,7 +3,6 @@ drive.mount('/content/drive')
   
 !pip install albumentations
 
-
 import albumentations as A
 from PIL import Image
 import numpy as np
