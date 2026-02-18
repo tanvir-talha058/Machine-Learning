@@ -1,7 +1,6 @@
 from google.colab import drive
 import os
 
-
 # Step 1: Mount Google Drive
 drive.mount('/content/drive')
 
