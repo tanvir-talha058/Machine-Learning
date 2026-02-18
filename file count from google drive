@@ -7,6 +7,7 @@ drive.mount('/content/drive')
 # Step 2: Specify the path of the Google Drive folder (root by default)
 drive_path = '/content/drive/MyDrive/Data for Leaf Disease/Raw Images'
 
-# Step 3: Count files in Google Drive
+# Step 3: Count files in Googl
+e Drive
 file_count = sum([len(files) for r, d, files in os.walk(drive_path)])
 print(f"Total number of files in Google Drive: {file_count}")
